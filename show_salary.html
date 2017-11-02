@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show employees</title>
+        <link rel="stylesheet" type="text/css" href="{{ 'bootstrap.min.css'|staticfile }}">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{'jqueryui.css'| staticfile }}">
+
+<!--  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+    <script src="{{'jqueryui.js'| staticfile }}"></script>
+
+
+</head>
+<style>
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+<body>
+<button class="btn btn-default"><a href="Tracker.back" data-bind="true">Back</a></button>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Employeeid</th>
+        <th>month</th>
+        <th>present_days</th>
+        <th>sal_per_day</th>
+        <th>Total_sal</th>
+    </tr>
+    {% for row in results %}
+   <tr><td>{{row[0]}}</td>
+   <td>{{row[1]}}</td>
+       <td>{{row[2]}}</td>
+       <td>{{row[3]}}</td>
+       <td>{{row[4]}}</td>
+       <td>{{row[5]}}</td>
+
+   </tr>
+    {% endfor %}
+</table>
+<div class="col-sm-offset-5 col-sm-2">
+<button class="btn btn-default" style="text-align: center"><a href="Tracker.excel" data-bind="true">Generate excelsheet</a></button>
+</div>
+</body>
+</html>

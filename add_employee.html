@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add employee</title>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ 'bootstrap.min.css'|staticfile }}">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{'jqueryui.css'| staticfile }}">
+
+<!--  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+    <script src="{{'jqueryui.js'| staticfile }}"></script>
+
+</head>
+<style>
+    .input_field{
+        width:90%;
+        display: inline;
+    }
+    .required{
+        color:red;
+        font-size: 18px;
+        display: inline;
+    }
+</style>
+<body>
+<button class="btn btn-default"><a href="Tracker.back" data-bind="true">Back</a></button>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-offset-4 col-xs-4 col-sm-offset-4 col-sm-4">
+            <div class="panel " style="width:100%;">
+  <div class="panel-heading form-heading" >
+    <h3 class="panel-title">Add employee</h3>
+  </div>
+  <div class="panel-body">
+
+      <form method="post" action="Tracker.addemployee" data-bind="true" id="form-1">
+
+  <div class="form-group ">
+    <label for="name">Name</label>
+      <br>
+    <input type="text" class="form-control input_field" id="name" name="name" >
+<span class="required" >*</span>
+  </div>
+
+  <div class="form-group ">
+    <label for="employeeid">Username</label>
+      <br>
+    <input type="text" class="form-control input_field" id="employeeid" name="employeeid" >
+<span class="required" >*</span>
+  </div>
+<div class="form-group ">
+    <label for="password">Password</label>
+      <br>
+    <input type="text" class="form-control input_field" id="password" name="password" >
+<span class="required" >*</span>
+  </div>
+
+<div class="form-group ">
+    <label for="age">age</label>
+      <br>
+    <input type="text" class="form-control input_field" id="age" name="age" >
+<span class="required" >*</span>
+  </div>
+
+<div class="form-group ">
+    <label for="address">address</label>
+      <br>
+    <input type="text" class="form-control input_field" id="address" name="address" >
+<span class="required" >*</span>
+  </div>
+
+  <div class="form-group ">
+    <label for="designation">designation</label>
+      <br>
+    <input type="text" class="form-control input_field" id="designation" name="designation" >
+<span class="required" >*</span>
+  </div>
+
+  <div class="form-group ">
+    <label for="sal_per_day">salary per day</label>
+      <br>
+    <input type="text" class="form-control input_field" id="sal_per_day" name="sal_per_day" >
+<span class="required" >*</span>
+  </div>
+<span style="color: red">* are Required Fields</span><br>
+          <span>{{error}}</span><br>
+
+  <button type="submit">Submit</button>
+
+ </form>
+
+  </div>
+</div>
+
+        </div>
+
+    </div>
+</div>
+
+
+</div>
+</body>
+</html>

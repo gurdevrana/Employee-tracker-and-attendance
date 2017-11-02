@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ 'bootstrap.min.css'|staticfile }}">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{'jqueryui.css'| staticfile }}">
+  <link rel="stylesheet" href="https://resources/demos/style.css">
+<!--  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+    <script src="{{'jqueryui.js'| staticfile }}"></script>
+
+      <script>
+  $( function() {
+    $("#datepicker").datepicker();
+  } );
+</script>
+</head>
+<style>
+      .mapsize {
+        height: 130px;
+        width: 100%;
+          display: none;
+       }
+    .row_width{
+        height:180px;
+    }
+    .notdisplay{
+    display: none;
+    }
+    .ticksize{
+        height:50px;
+        width:50px;
+    }
+    a:hover{
+        text-decoration-line: none;
+    }
+    a{
+        color:black;
+    }
+    .load{
+        width:100px;
+        height:100px;
+        display:none;
+    }
+    .col12{
+        color:deeppink;
+        font-size: 14px;
+    }
+        </style>
+
+<body data-bubble-img="{{ 'load.gif' |staticfile }}">
+
+<div class="container-fluid">
+    <div class="row row_width" >
+        <div class="col-xs-4 col-sm-4 ">
+            <h3 >Employee Tracker</h3>
+            <form method="post" action="Tracker.form" id="form-1" data-bind="true">
+                <input type="text" class="form-control input_field" id="username" name="username" style="display:none;" >
+            <p>Date: <input type="text" id="datepicker" name="date"></p>
+                <button type="submit" class="btn btn-default" form="form-1"  name="form1" value="form1" >Start Attendance</button>
+
+            </form>
+            <button class="btn btn-default"><a href="Tracker.refresh" id="link" data-bind="true">Refresh</a></button><br><br>
+        <button class="btn btn-default"><a href="Tracker.add" data-bind="true">Add Employee</a></button>
+        <button class="btn btn-default"><a href="Tracker.display_employ" data-bind="true">Show all Employees</a></button>
+        <button class="btn btn-default"><a href="Tracker.delete_emp" data-bind="true">Delete Employee</a></button>
+            <button class="btn btn-default"><a href="Tracker.show_salary" data-bind="true">Show salary</a></button>
+        </div>
+
+
+        <div class="col-xs-8" >
+
+        {% for row in results %}
+            <div class="row" style="height: 180px;">
+            <div class="col-xs-4 col-sm-4  ">
+        <h3>Location of {{row[1]}}</h3>
+        <img src='{{ "load.gif" |staticfile }}' class="load" >
+            <div class="mapsize"  id="map{{row[0]}}"></div>
+
+        </div>
+
+        <div class="col-xs-4 col-sm-4 ">
+        <h3>Employee status</h3>
+
+            <br>
+            <br>
+            <br>
+            <div>attendance: <span  id="attendancemap{{row[0]}}"></span>
+                <img src="{{ 'cross.png'|staticfile }}" class="notdisplay ticksize" id="crossmap{{row[0]}}">
+               <img src="{{ 'tick.png'|staticfile }}" class="notdisplay ticksize" id="tickmap{{row[0]}}">
+                <form action="Tracker.retry" id="retry-link{{row[0]}}" style="display: none"><button type="submit">
+                    retry
+                    <input type="hidden" name="username" value="{{row[2]}}" >
+                </button></form>
+            </div>
+
+        </div>
+        </div>
+            <br>
+            <br>
+         {% endfor %}
+        </div>
+        <br>
+    </div>
+</div>
+<!-- end -->
+<!--    <button type="button" onclick="append()" >add</button>-->
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJCpi9NrnjKxNEb460WleC6DTuHMAb2CA">
+</script>
+
+<script>
+function append(){
+    var bubble_img = $('body').data('bubble-img');
+var txt1 = '<div class="row row_width">'+
+      '<div class="col-offset-xs-4 col-xs-4 col-sm-offset-4 col-sm-4 ">'+
+        '<h3>Location of employee3</h3>'+
+        '<img src="'+bubble_img+'"  style="width:100px;height:100px;> <div  id="map5"></div>'+
+        '</div>'+
+        '<div class="col-xs-4 col-sm-4 ">'+
+           ' <br>'+
+           '<div style="position:relative;top: 90px"> attendance: <span  id="attendancemap4"></span>'+
+            '   <img src="cross.png" class="notdisplay ticksize" id="crossmap4">'+
+             '  <img src="tick.png" class="notdisplay ticksize" id="tickmap4">'+
+            '<form action="Tracker.retry" id="retry-link4" style="display: none"><button type="submit">'+
+             ' retry'+
+              '      <input type="hidden" name="threadno" value="thread4" >'+
+               ' </button></form>'+
+           '</div>'+
+        '</div>'+
+    '</div>' ;
+$("body").append(txt1);
+
+
+}
+
+</script>
+
+</body>
+</html>
